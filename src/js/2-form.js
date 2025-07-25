@@ -1,16 +1,16 @@
 const form = document.querySelector('.feedback-form');
 const STORAGE_KEY = 'feedback-form-state';
 
-// 🔹 Початкові значення
+// Початкові значення
 let formData = {
   email: '',
   message: '',
 };
 
-// 🔹 Завантажити дані з localStorage при старті
+// Завантажити дані з localStorage при старті
 loadFormData();
 
-// 🔹 Обробник input з делегуванням
+// Обробник input з делегуванням
 form.addEventListener('input', event => {
   const { name, value } = event.target;
 
@@ -18,7 +18,7 @@ form.addEventListener('input', event => {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(formData));
 });
 
-// 🔹 Обробник submit
+// Обробник submit
 form.addEventListener('submit', event => {
   event.preventDefault();
 
@@ -30,7 +30,7 @@ form.addEventListener('submit', event => {
     return;
   }
 
-  console.log('📝 Form submitted:', formData);
+  console.log('Form submitted:', formData);
 
   // Очистити все
   localStorage.removeItem(STORAGE_KEY);
@@ -38,7 +38,7 @@ form.addEventListener('submit', event => {
   form.reset();
 });
 
-// 🔹 Завантаження даних із localStorage
+// Завантаження даних із localStorage
 function loadFormData() {
   const savedData = localStorage.getItem(STORAGE_KEY);
   if (!savedData) return;
@@ -55,6 +55,6 @@ function loadFormData() {
       form.elements.message.value = parsedData.message;
     }
   } catch (e) {
-    console.warn('❌ Error parsing saved form data', e);
+    console.warn('Error parsing saved form data', e);
   }
 }
